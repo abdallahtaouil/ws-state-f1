@@ -5,7 +5,9 @@ class Counter extends Component {
     super();
     this.state = {
       counter: 0,
+      timer: 0,
     };
+    console.log('run constructor');
   }
   //   let counter = 0;
   increment = () => {
@@ -19,7 +21,25 @@ class Counter extends Component {
   reset = () => {
     this.setState({ counter: 0 });
   };
+
+  componentDidMount = () => {
+    console.log('run componentDidMount');
+    this.myInterval = setInterval(() => {
+      this.setState({ timer: this.state.timer + 1 });
+    }, 1000);
+  };
+
+  componentDidUpdate = () => {
+    console.log('run componentDidUpdate');
+  };
+
+  componentWillUnmount = () => {
+    console.log('run componentWillUnmount');
+    clearInterval(this.myInterval);
+  };
+
   render() {
+    console.log('run render');
     return (
       <div>
         <button className="increment-btn mx-2" onClick={this.increment}>
@@ -34,7 +54,7 @@ class Counter extends Component {
             Reset
           </button>
         </div>
-        <h2>timer: 0</h2>
+        <h2>timer: {this.state.timer}</h2>
       </div>
     );
   }
