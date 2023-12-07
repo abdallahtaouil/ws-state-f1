@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Counter from './components/Counter';
 
+// main component
 class App extends Component {
   state = {
     isVisisble: false,
